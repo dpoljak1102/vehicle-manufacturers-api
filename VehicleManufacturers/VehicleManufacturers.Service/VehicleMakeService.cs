@@ -19,6 +19,7 @@ namespace VehicleManufacturers.Service
         {
             try
             {
+                // vehicleMake = _vehicleMakeRepository.Create(vehicleMake);
                 _vehicleMakeRepository.Create(vehicleMake);
                 await _vehicleMakeRepository.SaveChangesAsync();
             }

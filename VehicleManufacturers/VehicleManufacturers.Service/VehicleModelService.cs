@@ -20,6 +20,7 @@ namespace VehicleManufacturers.Service
         {
             try
             {
+                // model = _vehicleModelRepository.Create(model);;
                 _vehicleModelRepository.Create(model);
                 await _vehicleModelRepository.SaveChangesAsync();
             }
