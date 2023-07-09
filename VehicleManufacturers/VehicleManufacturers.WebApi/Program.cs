@@ -1,21 +1,51 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Ninject;
 using VehicleManufacturers.DAL;
+using VehicleManufacturers.Service.Common;
+using VehicleManufacturers.WebApi.RestModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Register the Automapper configuration
+var mapperConfiguration = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<VehicleManufacturers.Repository.RepositoryProfile>();
+    cfg.AddProfile<RestProfile>();
+});
+var mapper = mapperConfiguration.CreateMapper();
 
-// Add services to the container.
+var kernel = new StandardKernel();
+
+kernel.Bind<IConfiguration>().ToConstant(builder.Configuration).InSingletonScope();
+kernel.Load<VehicleManufacturers.Repository.DIModule>();
+kernel.Load<VehicleManufacturers.Service.DIModule>();
+
+// Register IMapper as a constant
+kernel.Bind<IMapper>().ToConstant(mapper).InSingletonScope();
+
+// Add services to the container
+builder.Services.AddSingleton<IKernel>(kernel);                     // Register DI container
+builder.Services.AddScoped(_ => kernel.Get<IVehicleMakeService>()); // Example service registration
+builder.Services.AddScoped(_ => kernel.Get<IVehicleModelService>()); // Example service registration
+
+// Add Automapper configuration to DI container
+builder.Services.AddSingleton(mapperConfiguration);
+
+// Add Automapper as a service in DI container
+builder.Services.AddScoped<IMapper>(sp => sp.GetRequiredService<MapperConfiguration>().CreateMapper());
+
+// Add services to the container
 builder.Services.AddDbContext<VehicleManufacturersContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configure the HTTP request pipeline
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

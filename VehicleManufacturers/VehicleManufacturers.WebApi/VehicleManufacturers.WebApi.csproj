@@ -7,16 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="Ninject.Web.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Ninject.Web.Common" Version="3.3.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\VehicleManufacturers.DAL\VehicleManufacturers.DAL.csproj" />
+    <ProjectReference Include="..\VehicleManufacturers.Repository\VehicleManufacturers.Repository.csproj" />
+    <ProjectReference Include="..\VehicleManufacturers.Service\VehicleManufacturers.Service.csproj" />
   </ItemGroup>
 
 </Project>

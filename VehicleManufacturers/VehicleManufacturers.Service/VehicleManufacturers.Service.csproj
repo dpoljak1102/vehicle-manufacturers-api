@@ -13,9 +13,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
+    <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="Ninject.Web.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Ninject.Web.Common" Version="3.3.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VehicleManufacturers.Model\VehicleManufacturers.Model.csproj" />
     <ProjectReference Include="..\VehicleManufacturers.Repository.Common\VehicleManufacturers.Repository.Common.csproj" />
     <ProjectReference Include="..\VehicleManufacturers.Service.Common\VehicleManufacturers.Service.Common.csproj" />
   </ItemGroup>

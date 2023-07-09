@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ninject.Modules;
+using VehicleManufacturers.Service.Common;
 
 namespace VehicleManufacturers.Service
 {
-    public class DIModule : Module
+    public class DIModule : NinjectModule
     {
+        public override void Load()
+        {
+            Bind<IVehicleMakeService>().To<VehicleMakeService>().InTransientScope();
+            Bind<IVehicleModelService>().To<VehicleModelService>().InTransientScope();
+        }
     }
 }

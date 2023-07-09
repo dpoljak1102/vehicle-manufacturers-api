@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ninject.Modules;
+using VehicleManufacturers.Repository.Common;
 
 namespace VehicleManufacturers.Repository
 {
-    public class DIModule : Module
+    public class DIModule : NinjectModule
     {
+        public override void Load()
+        {
+            Bind<IVehicleMakeRepository>().To<VehicleMakeRepository>().InSingletonScope();
+            Bind<IVehicleModelRepository>().To<VehicleModelRepository>().InSingletonScope();
+        }
     }
 }

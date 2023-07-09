@@ -7,12 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
+    <PackageReference Include="Ninject" Version="3.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleManufacturers.DAL\VehicleManufacturers.DAL.csproj" />
+    <ProjectReference Include="..\VehicleManufacturers.Model\VehicleManufacturers.Model.csproj" />
+    <ProjectReference Include="..\VehicleManufacturers.Repository.Common\VehicleManufacturers.Repository.Common.csproj" />
   </ItemGroup>
 
 </Project>
