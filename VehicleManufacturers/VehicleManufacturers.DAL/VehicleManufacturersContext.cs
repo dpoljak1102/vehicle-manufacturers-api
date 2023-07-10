@@ -13,6 +13,9 @@ namespace VehicleManufacturers.DAL
             {
                 optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=VehicleManufacturersDB;Integrated Security=True",
                     b => b.MigrationsAssembly("VehicleManufacturers.WebApi"));
+
+                // Configuration for query tracking behavior
+                optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             }
         }
 

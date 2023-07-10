@@ -25,9 +25,9 @@ kernel.Load<VehicleManufacturers.Service.DIModule>();
 kernel.Bind<IMapper>().ToConstant(mapper).InSingletonScope();
 
 // Add services to the container
-builder.Services.AddSingleton<IKernel>(kernel);                     // Register DI container
-builder.Services.AddScoped(_ => kernel.Get<IVehicleMakeService>()); // Example service registration
-builder.Services.AddScoped(_ => kernel.Get<IVehicleModelService>()); // Example service registration
+builder.Services.AddSingleton<IKernel>(kernel);                      // Register DI container
+builder.Services.AddScoped(_ => kernel.Get<IVehicleMakeService>());  // Service registration
+builder.Services.AddScoped(_ => kernel.Get<IVehicleModelService>()); // Service registration
 
 // Add Automapper configuration to DI container
 builder.Services.AddSingleton(mapperConfiguration);

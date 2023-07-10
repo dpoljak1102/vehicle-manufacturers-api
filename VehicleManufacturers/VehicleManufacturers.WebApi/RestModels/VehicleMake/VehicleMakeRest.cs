@@ -1,4 +1,4 @@
-﻿namespace VehicleManufacturers.WebApi.RestModels
+﻿namespace VehicleManufacturers.WebApi.RestModels.VehicleMake
 {
     public class VehicleMakeRest
     {

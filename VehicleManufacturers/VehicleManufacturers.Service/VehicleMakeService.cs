@@ -1,4 +1,5 @@
-﻿using VehicleManufacturers.Common.Filters.VegicleMake;
+﻿using Microsoft.EntityFrameworkCore;
+using VehicleManufacturers.Common.Filters.VegicleMake;
 using VehicleManufacturers.Common.Pagination;
 using VehicleManufacturers.Common.Sort;
 using VehicleManufacturers.Model.Common;
@@ -19,15 +20,14 @@ namespace VehicleManufacturers.Service
         {
             try
             {
-                // vehicleMake = _vehicleMakeRepository.Create(vehicleMake);
                 _vehicleMakeRepository.Create(vehicleMake);
                 await _vehicleMakeRepository.SaveChangesAsync();
+                return vehicleMake;
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
-            return vehicleMake;
         }
 
         public async Task DeleteAsync(Guid id)
@@ -43,7 +43,7 @@ namespace VehicleManufacturers.Service
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -55,7 +55,7 @@ namespace VehicleManufacturers.Service
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -67,7 +67,7 @@ namespace VehicleManufacturers.Service
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -75,14 +75,14 @@ namespace VehicleManufacturers.Service
         {
             try
             {
-                vehicleMake = _vehicleMakeRepository.Update(vehicleMake);
+                var updatedVehicleMake = _vehicleMakeRepository.Update(vehicleMake);
                 await _vehicleMakeRepository.SaveChangesAsync();
+                return updatedVehicleMake;
             }
             catch (Exception e)
             {
-                new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
-            return vehicleMake;
         }
 
     }

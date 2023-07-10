@@ -1,25 +1,24 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using VehicleManufacturers.Common.Filters.VegicleMake;
+using VehicleManufacturers.Common.Filters.VehicleModel;
 using VehicleManufacturers.Common.Pagination;
 using VehicleManufacturers.Common.Sort;
 using VehicleManufacturers.Model;
-using VehicleManufacturers.Model.Common;
 using VehicleManufacturers.Service.Common;
-using VehicleManufacturers.WebApi.RestModels.VehicleMake;
+using VehicleManufacturers.WebApi.RestModels.VehicleModel;
 
 namespace VehicleManufacturers.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VehicleMakeController : ControllerBase
+    public class VehicleModelController : ControllerBase
     {
-        private readonly IVehicleMakeService _vehicleMakeService;
+        private readonly IVehicleModelService _vehicleModelService;
         private readonly IMapper _mapper;
 
-        public VehicleMakeController(IVehicleMakeService vehicleMakeService, IMapper mapper)
+        public VehicleModelController(IVehicleModelService vehicleModelService, IMapper mapper)
         {
-            _vehicleMakeService = vehicleMakeService;
+            _vehicleModelService = vehicleModelService;
             _mapper = mapper;
 
         }
@@ -28,26 +27,25 @@ namespace VehicleManufacturers.WebApi.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
-            var vehicle = await _vehicleMakeService.GetByIdAsync(id);
-            
-            if (vehicle == null)
+            var vehicleModel = await _vehicleModelService.GetByIdAsync(id);
+            if (vehicleModel == null)
             {
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<VehicleMakeRest>(vehicle));
+            return Ok(_mapper.Map<VehicleModelRest>(vehicleModel));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAsync(
             [FromQuery] Sort sort,
             [FromQuery] Pagination pagination,
-            [FromQuery] VehicleMakeFilter filter)
+            [FromQuery] VehicleModelFilter filter)
         {
             try
             {
-                var result = await _vehicleMakeService.GetAsync(sort, pagination, filter);
-                return Ok(new { result.Total, Data = _mapper.Map<List<VehicleMakeRest>>(result.Data) });
+                var result = await _vehicleModelService.GetAsync(sort, pagination, filter);
+                return Ok(new { result.Total, Data = _mapper.Map<List<VehicleModelRest>>(result.Data) });
             }
             catch (Exception e)
             {
@@ -56,12 +54,12 @@ namespace VehicleManufacturers.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(CreateVehicleMakeRest createVehicleMakeRest)
+        public async Task<IActionResult> CreateAsync(CreateVehicleModelRest createVehicleModelRest)
         {
             try
             {
-                var vehicleMake = await _vehicleMakeService.CreateAsync(_mapper.Map<VehicleMake>(createVehicleMakeRest));
-                return StatusCode(201, _mapper.Map<VehicleMakeRest>(vehicleMake));
+                var vehicleModel = await _vehicleModelService.CreateAsync(_mapper.Map<VehicleModel>(createVehicleModelRest));
+                return StatusCode(201, _mapper.Map<VehicleModelRest>(vehicleModel));
             }
             catch (Exception e)
             {
@@ -71,19 +69,19 @@ namespace VehicleManufacturers.WebApi.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> UpdateAsync(Guid id, UpdateVehicleMakeRest vehicleMakeRest)
+        public async Task<IActionResult> UpdateAsync(Guid id, UpdateVehicleModelRest vehicleModelRest)
         {
             try
             {
-                var vehicleMake = await _vehicleMakeService.GetByIdAsync(id);
-                if (vehicleMake == null)
+                var vehicleModel = await _vehicleModelService.GetByIdAsync(id);
+                if (vehicleModel == null)
                 {
                     return NotFound();
                 }
 
-                vehicleMake = _mapper.Map(vehicleMakeRest, vehicleMake);
-                vehicleMake = await _vehicleMakeService.UpdateAsync(vehicleMake);
-                return Ok(_mapper.Map<VehicleMakeRest>(vehicleMake));
+                vehicleModel = _mapper.Map(vehicleModelRest, vehicleModel);
+                vehicleModel = await _vehicleModelService.UpdateAsync(vehicleModel);
+                return Ok(_mapper.Map<VehicleModelRest>(vehicleModel));
             }
             catch (Exception e)
             {
@@ -97,7 +95,7 @@ namespace VehicleManufacturers.WebApi.Controllers
         {
             try
             {
-                await _vehicleMakeService.DeleteAsync(id);
+                await _vehicleModelService.DeleteAsync(id);
                 return NoContent();
             }
             catch (Exception e)

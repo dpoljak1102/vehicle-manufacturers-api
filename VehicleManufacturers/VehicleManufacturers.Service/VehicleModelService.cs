@@ -1,6 +1,7 @@
 ﻿using VehicleManufacturers.Common.Filters.VehicleModel;
 using VehicleManufacturers.Common.Pagination;
 using VehicleManufacturers.Common.Sort;
+using VehicleManufacturers.Model;
 using VehicleManufacturers.Model.Common;
 using VehicleManufacturers.Repository.Common;
 using VehicleManufacturers.Service.Common;
@@ -20,15 +21,15 @@ namespace VehicleManufacturers.Service
         {
             try
             {
-                // model = _vehicleModelRepository.Create(model);;
                 _vehicleModelRepository.Create(model);
                 await _vehicleModelRepository.SaveChangesAsync();
+                return model;
+
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
-            return model;
         }
 
         public async Task DeleteAsync(Guid id)
@@ -44,7 +45,7 @@ namespace VehicleManufacturers.Service
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -56,7 +57,7 @@ namespace VehicleManufacturers.Service
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -69,7 +70,7 @@ namespace VehicleManufacturers.Service
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -77,14 +78,14 @@ namespace VehicleManufacturers.Service
         {
             try
             {
-                model = _vehicleModelRepository.Update(model);
+                var updatedVehicleMake = _vehicleModelRepository.Update(model);
                 await _vehicleModelRepository.SaveChangesAsync();
+                return updatedVehicleMake;
             }
             catch (Exception e)
             {
-                new Exception(e.Message);
+                throw new Exception(e.Message, e);
             }
-            return model;
         }
     }
 }

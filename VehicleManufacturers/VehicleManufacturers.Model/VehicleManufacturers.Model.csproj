@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VehicleManufacturers.DAL\VehicleManufacturers.DAL.csproj" />
     <ProjectReference Include="..\VehicleManufacturers.Model.Common\VehicleManufacturers.Model.Common.csproj" />
   </ItemGroup>
 
