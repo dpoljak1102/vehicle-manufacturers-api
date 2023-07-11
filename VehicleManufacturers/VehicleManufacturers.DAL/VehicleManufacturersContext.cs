@@ -9,8 +9,10 @@ namespace VehicleManufacturers.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Check if optionsBuilder is already configured
             if (!optionsBuilder.IsConfigured)
             {
+                // Set up SQL Server connection string
                 optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=VehicleManufacturersDB;Integrated Security=True",
                     b => b.MigrationsAssembly("VehicleManufacturers.WebApi"));
 
@@ -19,7 +21,10 @@ namespace VehicleManufacturers.DAL
             }
         }
 
+        // DbSet for VehicleMakeEntity table
         public DbSet<VehicleMakeEntity> VehicleMakes { get; set; }
+
+        // DbSet for VehicleModelEntity table
         public DbSet<VehicleModelEntity> VehicleModels { get; set; }
     }
 }

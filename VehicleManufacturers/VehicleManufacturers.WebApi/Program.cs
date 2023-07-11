@@ -21,7 +21,6 @@ kernel.Bind<IConfiguration>().ToConstant(builder.Configuration).InSingletonScope
 kernel.Load<VehicleManufacturers.Repository.DIModule>();
 kernel.Load<VehicleManufacturers.Service.DIModule>();
 
-// Register IMapper as a constant
 kernel.Bind<IMapper>().ToConstant(mapper).InSingletonScope();
 
 // Add services to the container
@@ -36,8 +35,7 @@ builder.Services.AddSingleton(mapperConfiguration);
 builder.Services.AddScoped<IMapper>(sp => sp.GetRequiredService<MapperConfiguration>().CreateMapper());
 
 // Add services to the container
-builder.Services.AddDbContext<VehicleManufacturersContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<VehicleManufacturersContext>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

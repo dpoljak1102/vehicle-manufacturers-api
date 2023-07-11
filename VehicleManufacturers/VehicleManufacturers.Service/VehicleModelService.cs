@@ -1,7 +1,6 @@
 ﻿using VehicleManufacturers.Common.Filters.VehicleModel;
 using VehicleManufacturers.Common.Pagination;
 using VehicleManufacturers.Common.Sort;
-using VehicleManufacturers.Model;
 using VehicleManufacturers.Model.Common;
 using VehicleManufacturers.Repository.Common;
 using VehicleManufacturers.Service.Common;
@@ -10,13 +9,14 @@ namespace VehicleManufacturers.Service
 {
     public class VehicleModelService : IVehicleModelService
     {
-
         private readonly IVehicleModelRepository _vehicleModelRepository;
+        
         public VehicleModelService(IVehicleModelRepository vehicleModelRepository)
         {
             _vehicleModelRepository = vehicleModelRepository;
 
         }
+
         public async Task<IVehicleModel> CreateAsync(IVehicleModel model)
         {
             try

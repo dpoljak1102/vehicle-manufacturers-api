@@ -1,7 +1,4 @@
-﻿using VehicleManufacturers.DAL.Entities;
-using VehicleManufacturers.WebApi.RestModels.VehicleModel;
-
-namespace VehicleManufacturers.WebApi.RestModels
+﻿namespace VehicleManufacturers.WebApi.RestModels
 {
     public class RestProfile : AutoMapper.Profile
     {

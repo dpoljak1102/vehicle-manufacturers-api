@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VehicleManufacturers.Common.Filters.VegicleMake;
+﻿using VehicleManufacturers.Common.Filters.VegicleMake;
 using VehicleManufacturers.Common.Pagination;
 using VehicleManufacturers.Common.Sort;
 using VehicleManufacturers.Model.Common;
@@ -11,6 +10,7 @@ namespace VehicleManufacturers.Service
     public class VehicleMakeService : IVehicleMakeService
     {
         private readonly IVehicleMakeRepository _vehicleMakeRepository;
+
         public VehicleMakeService(IVehicleMakeRepository vehicleMakeRepository)
         {
             _vehicleMakeRepository = vehicleMakeRepository;

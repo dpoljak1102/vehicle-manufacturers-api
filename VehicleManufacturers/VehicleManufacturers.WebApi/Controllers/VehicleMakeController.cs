@@ -4,7 +4,6 @@ using VehicleManufacturers.Common.Filters.VegicleMake;
 using VehicleManufacturers.Common.Pagination;
 using VehicleManufacturers.Common.Sort;
 using VehicleManufacturers.Model;
-using VehicleManufacturers.Model.Common;
 using VehicleManufacturers.Service.Common;
 using VehicleManufacturers.WebApi.RestModels.VehicleMake;
 
